@@ -1,66 +1,53 @@
 .article-navigation {
-    margin: 3rem 0;
+    margin: 2rem 0;
+    padding: 1rem 0;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
-    padding: 2rem 0;
 }
 
 .nav-links {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    gap: 2rem;
-}
-
-.nav-separator {
-    width: 1px;
-    background-color: #eee;
+    gap: 1rem;
 }
 
 .nav-item {
     flex: 1;
+    padding: 1rem;
     text-decoration: none;
-    color: inherit;
+    color: #333;
+    border: 1px solid #eee;
+    border-radius: 8px;
     transition: all 0.3s ease;
-    position: relative;
-    display: flex;
-    align-items: flex-start;
+    display: none;
 }
 
 .nav-item:hover {
-    color: #0d6efd;
-}
-
-.nav-content {
-    width: 100%;
+    background: #f8f9fa;
+    border-color: #ddd;
 }
 
 .nav-item.prev {
     text-align: left;
-    padding-right: 1rem;
 }
 
 .nav-item.next {
     text-align: right;
-    padding-left: 1rem;
 }
 
 .nav-label {
     display: block;
     font-size: 0.875rem;
-    color: #6c757d;
+    color: #666;
     margin-bottom: 0.5rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 .nav-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin: 0 0 0.5rem;
-    line-height: 1.4;
-    color: #212529;
+    font-size: 1rem;
+    margin: 0;
+    color: #333;
+    font-weight: 500;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -72,43 +59,16 @@
     align-items: center;
     gap: 0.5rem;
     font-size: 0.875rem;
-    color: #0d6efd;
-}
-
-.nav-item.next .nav-meta {
-    justify-content: flex-end;
+    color: #666;
+    margin-top: 0.5rem;
 }
 
 .nav-category {
-    font-weight: 500;
+    text-transform: capitalize;
 }
 
-.nav-item:hover .nav-title {
-    color: #0d6efd;
-}
-
-@media (max-width: 768px) {
-    .article-navigation {
-        margin: 2rem 0;
-        padding: 1.5rem 0;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-
-    .nav-separator {
-        height: 1px;
-        width: 100%;
-    }
-
-    .nav-item.prev,
-    .nav-item.next {
-        padding: 0;
-    }
-
-    .nav-title {
-        font-size: 1rem;
-    }
+.nav-separator {
+    width: 1px;
+    background: #eee;
+    align-self: stretch;
 }

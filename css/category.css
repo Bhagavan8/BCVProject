@@ -702,3 +702,43 @@ body {
     color: #6c757d;
     padding: 20px;
 }
+
+.pagination-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.pagination {
+    gap: 0.5rem;
+}
+
+.pagination .page-link {
+    color: #2962ff;
+    border-color: #e9ecef;
+    background-color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #2962ff;
+    border-color: #2962ff;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(41, 98, 255, 0.2);
+}
+
+.pagination .page-link:hover {
+    background-color: #f8f9fa;
+    border-color: #2962ff;
+    color: #2962ff;
+    transform: translateY(-2px);
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #e9ecef;
+    opacity: 0.6;
+}

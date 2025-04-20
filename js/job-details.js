@@ -200,6 +200,7 @@ class JobDetailsManager {
         const locationEl = document.getElementById('location');
         const experienceEl = document.getElementById('experience');
         const salaryEl = document.getElementById('salary');
+        const salaryWrapper = document.getElementById('salaryWrapper');
         const applyButton = document.getElementById('applyButton');
 
         if (jobTitleEl) jobTitleEl.textContent = job.jobTitle || job.postName;
@@ -214,7 +215,14 @@ class JobDetailsManager {
                 experienceEl.textContent = 'Not specified';
             }
         }
-        if (salaryEl) salaryEl.textContent = job.salary;
+        if (salaryEl && salaryWrapper) {
+            if (job.salary && job.salary.trim() !== '') {
+                salaryEl.textContent = job.salary;
+                salaryWrapper.style.display = 'inline-flex';
+            } else {
+                salaryWrapper.style.display = 'none';
+            }
+        }
 
         const logoContainer = document.getElementById('companyLogo');
         if (this.jobType === 'bank') {

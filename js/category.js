@@ -11,6 +11,8 @@ let lastVisible = null;
 let currentCategory = 'all'; // Set default value
 let currentView = 'grid';
 const ITEMS_PER_PAGE = 10;
+let currentPage = 1;
+let totalPages = 0;
 
 // User session management
 function getUserToken() {
@@ -33,6 +35,29 @@ async function hasUserInteracted(newsId, type) {
     } catch (error) {
         console.error(`Error checking ${type} interaction:`, error);
         return false;
+    }
+}
+
+// Update trackView function
+async function trackView(newsId) {
+    try {
+        const hasViewed = await hasUserInteracted(newsId, 'views');
+        if (!hasViewed) {
+            const userToken = getUserToken();
+            const viewsRef = collection(db, 'news', newsId, 'views');
+            const newsRef = doc(db, 'news', newsId);
+            
+            await addDoc(viewsRef, {
+                userToken,
+                timestamp: serverTimestamp()
+            });
+            
+            await updateDoc(newsRef, {
+                views: increment(1)
+            });
+        }
+    } catch (error) {
+        console.error('Error tracking view:', error);
     }
 }
 
@@ -69,12 +94,10 @@ function showNotification(message, type = 'info') {
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-       
         AOS.init();
         
-       
         const urlParams = new URLSearchParams(window.location.search);
-        currentCategory = urlParams.get('category') || currentCategory; // Use default if not in URL
+        currentCategory = urlParams.get('category') || 'all'; // Default to 'all' if no category
         
         // Set category title
         const categoryTitle = document.getElementById('categoryTitle');
@@ -239,11 +262,13 @@ function initializeEventListeners() {
 }
 
 
+// Add at the top of your file
+
+
 // Update loadCategoryNews function
-async function loadCategoryNews(isLoadMore = false) {
+async function loadCategoryNews(page = 1) {
     try {
         const container = safeGetElement('newsContainer');
-        const loadMoreBtn = safeGetElement('loadMoreBtn');
         const sortSelect = safeGetElement('sortOptions');
         const timeSelect = safeGetElement('timeRange');
         
@@ -252,6 +277,7 @@ async function loadCategoryNews(isLoadMore = false) {
             return;
         }
 
+        currentPage = page;
         const sortOption = sortSelect.value;
         const timeRange = timeSelect.value;
         
@@ -263,33 +289,15 @@ async function loadCategoryNews(isLoadMore = false) {
             where('approvalStatus', '==', 'approved')
         ];
 
-        // Add category-specific conditions
-        switch(currentCategory) {
-            case 'featured':
-                conditions.push(where('section', '==', 'featured'));
-                break;
-            case 'recent':
+        // Only add category conditions if not 'all'
+        if (currentCategory && currentCategory !== 'all') {
+            if (currentCategory === 'recent') {
                 const last24Hours = new Date();
                 last24Hours.setHours(last24Hours.getHours() - 24);
                 conditions.push(where('createdAt', '>=', last24Hours));
-                conditions.push(where('section', '==', 'recent'));
-                break;
-            case 'entertainment':
-                conditions.push(where('section', '==', 'entertainment'));
-                break;
-            case 'tips':
-                conditions.push(where('section', '==', 'tips'));
-                break;
-            case 'stories':
-                conditions.push(where('section', '==', 'stories'));
-                break;
-            case 'general':
-                conditions.push(where('section', '==', 'general'));
-                break;
-            default:
-                if (currentCategory) {
-                    conditions.push(where('section', '==', currentCategory));
-                }
+            } else {
+                conditions.push(where('section', '==', currentCategory));
+            }
         }
 
         // Apply time range filter if not in recent category
@@ -303,38 +311,27 @@ async function loadCategoryNews(isLoadMore = false) {
 
         // Apply sorting
         if (sortOption === 'popular') {
-            newsQuery = query(
-                baseQuery,
-                ...conditions,
-                orderBy('views', 'desc')
-            );
+            newsQuery = query(baseQuery, ...conditions, orderBy('views', 'desc'));
         } else if (sortOption === 'trending') {
-            newsQuery = query(
-                baseQuery,
-                ...conditions,
-                orderBy('likes', 'desc')
-            );
+            newsQuery = query(baseQuery, ...conditions, orderBy('likes', 'desc'));
         } else {
-            // Default sorting by creation date
-            newsQuery = query(
-                baseQuery,
-                ...conditions,
-                orderBy('createdAt', 'desc')
-            );
+            newsQuery = query(baseQuery, ...conditions, orderBy('createdAt', 'desc'));
         }
 
         // Add pagination
+        // Update pagination query
+        const startAt = (page - 1) * ITEMS_PER_PAGE;
         newsQuery = query(newsQuery, limit(ITEMS_PER_PAGE));
-        if (isLoadMore && lastVisible) {
-            newsQuery = query(newsQuery, startAfter(lastVisible));
-        }
 
         const snapshot = await getDocs(newsQuery);
-        lastVisible = snapshot.docs[snapshot.docs.length - 1];
+        
+        // Get total count for pagination
+        const totalSnapshot = await getDocs(query(baseQuery, ...conditions));
+        totalPages = Math.ceil(totalSnapshot.size / ITEMS_PER_PAGE);
 
         if (snapshot.empty) {
             container.innerHTML = '<div class="no-news">No news articles found in this category.</div>';
-            if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+            updatePagination(totalPages);
             return;
         }
 
@@ -343,17 +340,8 @@ async function loadCategoryNews(isLoadMore = false) {
             id: doc.id
         }));
 
-        if (!isLoadMore) {
-            renderNews(newsItems);
-        } else {
-            const existingNews = Array.from(container.children);
-            renderNews([...existingNews, ...newsItems]);
-        }
-
-        if (loadMoreBtn) {
-            loadMoreBtn.style.display = 
-                snapshot.docs.length < ITEMS_PER_PAGE ? 'none' : 'block';
-        }
+        renderNews(newsItems);
+        updatePagination(totalPages);
 
     } catch (error) {
         console.error('Error loading news:', error);
@@ -362,12 +350,16 @@ async function loadCategoryNews(isLoadMore = false) {
 }
 
 // Update renderNews function to use createNewsCard
+// In the renderNews function
 function renderNews(newsItems) {
     const newsContainer = document.getElementById('newsContainer');
     if (!newsContainer) return;
 
     // Clear existing content
     newsContainer.innerHTML = '';
+    
+    // Ensure grid class is applied
+    newsContainer.className = 'news-grid';
     
     // Create news elements
     newsItems.forEach((news, index) => {
@@ -391,20 +383,23 @@ function createNewsCard(news, id, index) {
     // Track view if not already viewed
     trackView(id);
     
+    const content = news.content || '';
+    const excerpt = content.length > 100 ? content.substring(0, 100) + '...' : content;
+    
     return `
         <article class="news-item" data-aos="fade-up" data-aos-delay="${index * 100}">
             <div class="news-card">
                 <div class="news-image">
-                    <img src="${news.imagePath}" alt="${news.title}">
-                    <span class="news-category">${news.category}</span>
+                    <img src="${news.imagePath || ''}" alt="${news.title || ''}">
+                    <span class="news-category">${news.category || 'Uncategorized'}</span>
                 </div>
                 <div class="news-content">
                     <div class="news-meta">
                         <span><i class="bi bi-clock-fill"></i> ${formatDate(news.createdAt)}</span>
-                        <span><i class="bi bi-person-fill"></i> ${news.authorName}</span>
+                        <span><i class="bi bi-person-fill"></i> ${news.authorName || 'Anonymous'}</span>
                     </div>
-                    <h3 class="news-title" title="${news.title}">${news.title}</h3>
-                    <p class="news-excerpt">${news.content.substring(0, 100)}...</p>
+                    <h3 class="news-title" title="${news.title || ''}">${news.title || 'Untitled'}</h3>
+                    <p class="news-excerpt">${excerpt}</p>
                     <div class="news-footer">
                         <div class="news-stats">
                             <button class="btn-stat" title="Views">
@@ -415,7 +410,7 @@ function createNewsCard(news, id, index) {
                                 <i class="bi bi-heart${news.liked ? '-fill' : ''}"></i>
                                 <span>${formatNumber(news.likes || 0)}</span>
                             </button>
-                            <button class="btn-stat btn-share" onclick="shareNews('${id}', '${news.title}')" title="Share">
+                            <button class="btn-stat btn-share" onclick="shareNews('${id}', '${news.title || ''}')" title="Share">
                                 <i class="bi bi-share-fill"></i>
                             </button>
                         </div>
@@ -429,44 +424,8 @@ function createNewsCard(news, id, index) {
     `;
 }
 
-// Add view tracking function
-async function trackView(newsId) {
-    try {
-        const hasViewed = await hasUserInteracted(newsId, 'views');
-        if (!hasViewed) {
-            const userToken = getUserToken();
-            const viewsRef = collection(db, 'news', newsId, 'views');
-            const newsRef = doc(db, 'news', newsId);
-            
-            await addDoc(viewsRef, {
-                userToken,
-                timestamp: serverTimestamp()
-            });
-            
-            await updateDoc(newsRef, {
-                views: increment(1)
-            });
-        }
-    } catch (error) {
-        console.error('Error tracking view:', error);
-    }
-}
 
-async function handleLike(newsId) {
-    try {
-        const newsRef = doc(db, 'news', newsId);
-        await updateDoc(newsRef, {
-            likes: increment(1)
-        });
-        // Update UI
-        const likeBtn = document.querySelector(`[onclick="handleLike('${newsId}')"]`);
-        const likeIcon = likeBtn.querySelector('i');
-        likeIcon.classList.remove('bi-heart');
-        likeIcon.classList.add('bi-heart-fill');
-    } catch (error) {
-        console.error('Error liking news:', error);
-    }
-}
+
 
 function shareNews(newsId, title) {
     const url = `${window.location.origin}/news-detail.html?id=${newsId}`;
@@ -548,7 +507,37 @@ async function refreshNews() {
 
 // Update load more function
 async function loadMoreNews() {
-    await safeExecute(() => loadCategoryNews(true), 'Failed to load more news');
+    const container = safeGetElement('newsContainer');
+    const loadMoreBtn = safeGetElement('loadMoreBtn');
+    
+    if (!container || !loadMoreBtn) return;
+    
+    try {
+        // Show loading state
+        loadMoreBtn.disabled = true;
+        loadMoreBtn.innerHTML = '<i class="bi bi-hourglass"></i> Loading...';
+        
+        // Load more news
+        await loadCategoryNews(true);
+        
+        // Restore button state
+        loadMoreBtn.disabled = false;
+        loadMoreBtn.innerHTML = 'Load More';
+        
+        // Scroll to the new content smoothly
+        const newItems = container.querySelectorAll('.news-item');
+        if (newItems.length > 0) {
+            const lastOldItem = newItems[newItems.length - ITEMS_PER_PAGE];
+            if (lastOldItem) {
+                lastOldItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    } catch (error) {
+        console.error('Error loading more news:', error);
+        loadMoreBtn.disabled = false;
+        loadMoreBtn.innerHTML = 'Load More';
+        showNotification('Failed to load more news', 'error');
+    }
 }
 
 
@@ -811,5 +800,71 @@ async function updateMetaStats() {
     } catch (error) {
         console.error('Error updating meta stats:', error);
     }
+}
+
+
+// Add after the loadCategoryNews function
+function updatePagination(totalPages) {
+    const paginationContainer = document.getElementById('newsPagination');
+    if (!paginationContainer) {
+        console.warn('Pagination container not found');
+        return;
+    }
+
+    let html = '';
+    
+    // Previous button
+    html += `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="${currentPage - 1}" aria-label="Previous">
+                <i class="bi bi-chevron-left"></i>
+            </a>
+        </li>
+    `;
+
+    // Page numbers
+    for (let i = 1; i <= totalPages; i++) {
+        if (
+            i === 1 || // First page
+            i === totalPages || // Last page
+            (i >= currentPage - 1 && i <= currentPage + 1) // Pages around current
+        ) {
+            html += `
+                <li class="page-item ${i === currentPage ? 'active' : ''}">
+                    <a class="page-link" href="#" data-page="${i}">${i}</a>
+                </li>
+            `;
+        } else if (i === currentPage - 2 || i === currentPage + 2) {
+            html += `
+                <li class="page-item disabled">
+                    <span class="page-link">...</span>
+                </li>
+            `;
+        }
+    }
+
+    // Next button
+    html += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="${currentPage + 1}" aria-label="Next">
+                <i class="bi bi-chevron-right"></i>
+            </a>
+        </li>
+    `;
+
+    paginationContainer.innerHTML = html;
+
+    // Add click handlers with improved event delegation
+    paginationContainer.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const link = e.target.closest('.page-link');
+        if (!link || link.parentElement.classList.contains('disabled')) return;
+
+        const page = parseInt(link.dataset.page);
+        if (!isNaN(page) && page !== currentPage) {
+            await loadCategoryNews(page);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
 }
 
