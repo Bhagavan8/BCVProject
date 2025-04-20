@@ -133,7 +133,7 @@ async function loadSectionNews(section, containerId, itemLimit = 4) {
                     <article class="news-article" data-aos="fade-up" data-aos-delay="${index * 100}">
                         <div class="article-image">
                             <img src="${news.imagePath}" alt="${news.title}" loading="lazy">
-                            <span class="category-tag">${news.category}</span>
+                            <span class="category-tag">${news.category.charAt(0).toUpperCase() + news.category.slice(1)}</span>
                         </div>
                         <div class="article-content">
                             <div class="article-meta">

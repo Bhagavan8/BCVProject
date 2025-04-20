@@ -364,13 +364,27 @@ async function loadCategoryNews(isLoadMore = false) {
 // Update renderNews function to use createNewsCard
 function renderNews(newsItems) {
     const newsContainer = document.getElementById('newsContainer');
-    const newsElements = newsItems.map((news, index) => {
-        return createNewsCard(news, news.id, index);
-    });
+    if (!newsContainer) return;
 
-    // Insert ads into the news grid
-    const newsWithAds = insertAdsIntoGrid(newsElements);
-    newsContainer.innerHTML = newsWithAds.join('');
+    // Clear existing content
+    newsContainer.innerHTML = '';
+    
+    // Create news elements
+    newsItems.forEach((news, index) => {
+        // Add news article
+        const newsElement = createNewsCard(news, news.id, index);
+        newsContainer.insertAdjacentHTML('beforeend', newsElement);
+        
+        // Insert single ad after 4th and 5th items
+        if (index === 3 || index === 4) {
+            const adElement = `
+                <div class="ad-item">
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+            `;
+            newsContainer.insertAdjacentHTML('beforeend', adElement);
+        }
+    });
 }
 
 function createNewsCard(news, id, index) {
@@ -797,17 +811,5 @@ async function updateMetaStats() {
     } catch (error) {
         console.error('Error updating meta stats:', error);
     }
-}
-function insertAdsIntoGrid(newsHTML) {
-    const adTemplate = document.getElementById('adTemplate').content;
-    const newsArray = Array.from(newsHTML);
-    
-    // Insert an ad after every 3 news items
-    for (let i = 3; i < newsArray.length; i += 4) {
-        const adClone = adTemplate.cloneNode(true);
-        newsArray.splice(i, 0, adClone);
-    }
-    
-    return newsArray;
 }
 
