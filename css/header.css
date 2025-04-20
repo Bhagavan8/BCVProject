@@ -1,0 +1,61 @@
+.text-3d {
+    color: #0066cc;
+    text-shadow: 
+        1px 1px 1px rgba(0, 102, 204, 0.2),
+        2px 2px 2px rgba(0, 102, 204, 0.15),
+        3px 3px 3px rgba(0, 102, 204, 0.1);
+    transform-style: preserve-3d;
+}
+
+.text-dark-3d {
+    color: #000000;
+    text-shadow: 
+        1px 1px 1px rgba(0, 0, 0, 0.2),
+        2px 2px 2px rgba(0, 0, 0, 0.15),
+        3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Fix the hover effect */
+.logo-link:hover .text-3d,
+.logo-link:hover .text-dark-3d {
+    animation: pulse3D 0.5s ease-in-out;
+    transform-style: preserve-3d;
+}
+.header-content {
+    gap: 1rem;
+}
+
+.ad-space-nav {
+    width: 200px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.ad-placeholder-nav {
+    width: 100%;
+    height: 100%;
+    background: #f8f9fa;
+    border: 1px dashed #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-size: 0.8rem;
+}
+
+/* Update responsive breakpoints */
+@media (max-width: 992px) {
+    .ad-space {
+        width: 160px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ad-space {
+        display: none;
+    }
+    .header-content {
+        justify-content: center;
+    }
+}

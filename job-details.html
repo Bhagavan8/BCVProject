@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Job Details - Find Your Dream Job | BCV World</title>
+    <meta name="title" content="Job Details - Find Your Dream Job | BCV World">
+    <meta name="description" content="Discover the latest job opportunities, career growth, and employment details. Find jobs across IT, banking, finance, government sectors with competitive salaries and benefits.">
+    <meta name="keywords" content="job search, career opportunities, employment, job vacancy, IT jobs, banking jobs, government jobs, private jobs, job portal, job listing, career growth, job recruitment, job openings, work opportunities, job application, professional careers, job positions, employment opportunities, job market, career development">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bcvworld.com/job-details">
+    <meta property="og:title" content="Job Details - Find Your Dream Job | BCV World">
+    <meta property="og:description" content="Discover the latest job opportunities, career growth, and employment details. Find jobs across IT, banking, finance, government sectors with competitive salaries and benefits.">
+    <meta property="og:image" content="https://bcvworld.com/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://bcvworld.com/job-details">
+    <meta property="twitter:title" content="Job Details - Find Your Dream Job | BCV World">
+    <meta property="twitter:description" content="Discover the latest job opportunities, career growth, and employment details. Find jobs across IT, banking, finance, government sectors with competitive salaries and benefits.">
+    <meta property="twitter:image" content="https://bcvworld.com/images/twitter-image.jpg">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="BCV World">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="googlebot" content="index, follow">
+    <meta name="rating" content="general">
+    <link rel="canonical" href="https://bcvworld.com/job-details">
+
+    <!-- Existing CSS Links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/social-share.css">
+    <script src="/js/social-share.js" defer></script>
+    <link href="css/job-details.css" rel="stylesheet">
+    <link href="css/job-stats.css" rel="stylesheet">
+    <link href="css/mobile.responsive.css" rel="stylesheet">
+    <link href="css/banners.css" rel="stylesheet">
+
+    <!-- Schema.org Markup for Job Posting -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "JobPosting",
+        "name": "Job Details - BCV World",
+        "description": "Find your dream job with competitive salary and benefits. Browse through various job opportunities across different sectors.",
+        "datePosted": "2025-04-20",
+        "validThrough": "2022-12-31",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+            "@type": "Organization",
+            "name": "BCV World",
+            "sameAs": "https://bcvworld.com"
+        },
+        "jobLocation": {
+            "@type": "Place",
+            "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+            }
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <div id="header-container"></div>
+    <div id="navigation-container"></div>
+
+    <div class="main-container">
+        <div class="page-layout">
+            <!-- Left Sidebar - Ads -->
+            <div class="left-sidebar">
+                <div class="ad-space sticky-top">
+                    <div class="ad-placeholder">Advertisement</div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Add Back Button -->
+                <div class="back-navigation mb-3">
+                    <a href="jobs.html" class="btn btn-outline-primary back-btn">
+                        <i class="bi bi-arrow-left"></i> Back to Jobs
+                    </a>
+                </div>
+
+                <div class="job-header">
+                    <div class="company-info">
+                        <div id="companyLogo" class="company-logo"></div>
+                        <div class="job-title-section">
+                            <h1 id="jobTitle" class="text-capitalize job-title-gradient"></h1>
+                            <h2 id="companyName" class="text-capitalize company-name-style"></h2>
+                            <div class="job-meta">
+                                <span id="locationWrapper" class="meta-item">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <span id="location" class="text-capitalize"></span>
+                                </span>
+                                <span id="experienceWrapper" class="meta-item">
+                                    <i class="bi bi-briefcase-fill"></i>
+                                    <span id="experience" class="text-capitalize"></span>
+                                </span>
+                                <span id="salaryWrapper" class="meta-item">
+                                    <i class="bi bi-currency-rupee"></i>
+                                    <span id="salary"></span>
+                                </span>
+                            </div>
+                            <div class="job-stats-container">
+                                <div class="stats-row d-flex align-items-center justify-content-start gap-4">
+                                    <div class="stat-item views">
+                                        <i class="bi bi-eye-fill"></i>
+                                        <span id="viewCount">0</span>
+                                    </div>
+                                    <div class="stat-item likes">
+                                        <button id="likeButton" class="like-btn">
+                                            <i class="bi bi-heart"></i>
+                                            <span id="likeCount">0</span>
+                                        </button>
+                                    </div>
+                                    <div class="stat-item rating">
+                                        <i class="bi bi-star-fill"></i>
+                                        <span id="avgRating">0.0</span>
+                                        (<span id="ratingCount">0</span>)
+                                    </div>
+                                    <div class="share-buttons">
+                                        <button class="share-btn" data-platform="facebook" title="Share on Facebook">
+                                            <i class="bi bi-facebook"></i>
+                                        </button>
+                                        <button class="share-btn" data-platform="twitter" title="Share on Twitter">
+                                            <i class="bi bi-twitter"></i>
+                                        </button>
+                                        <button class="share-btn" data-platform="linkedin" title="Share on LinkedIn">
+                                            <i class="bi bi-linkedin"></i>
+                                        </button>
+                                        <button class="share-btn" data-platform="whatsapp" title="Share on WhatsApp">
+                                            <i class="bi bi-whatsapp"></i>
+                                        </button>
+                                        <button class="share-btn" id="copyLink" title="Copy Link">
+                                            <i class="bi bi-link-45deg"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="tab-navigation">
+                        <button class="tab-btn active" data-tab="overview">
+                            <i class="bi bi-file-text"></i> Overview
+                        </button>
+                        <!-- Removed details tab button -->
+                        <button class="tab-btn" data-tab="reviews">
+                            <i class="bi bi-star"></i> Reviews & Comments
+                        </button>
+                    </div>
+
+                    <div class="tab-container">
+                        <div id="overview" class="tab-content active">
+                            <div class="content-wrapper">
+                                <div class="job-description content-block shadow-sm"></div>
+                                <div class="key-details content-block shadow-sm"></div>
+                            </div>
+                        </div>
+
+                        <div id="reviews" class="tab-content">
+                            <div class="content-wrapper">
+                                <div class="rating-section">
+                                    <div class="rating-header">
+                                        <h4 class="section-title">
+                                            <i class="bi bi-star-fill text-warning"></i>
+                                            Job Rating
+                                        </h4>
+                                        <div class="rating-stats">
+                                            <div id="averageRatingStars" class="stars"></div>
+                                            <div class="rating-numbers">
+                                                <span id="averageRatingValue" class="rating-value"></span>
+                                                <span id="totalRatings" class="rating-count"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="ratingContainer" class="rating-input-section">
+                                        <h5 class="input-title">Rate this job</h5>
+                                        <div class="rating-input-wrapper">
+                                            <div class="stars" id="ratingInput">
+                                                <i class="bi bi-star" data-rating="1" title="Poor"></i>
+                                                <i class="bi bi-star" data-rating="2" title="Fair"></i>
+                                                <i class="bi bi-star" data-rating="3" title="Good"></i>
+                                                <i class="bi bi-star" data-rating="4" title="Very Good"></i>
+                                                <i class="bi bi-star" data-rating="5" title="Excellent"></i>
+                                            </div>
+                                            <span id="ratingMessage" class="rating-message"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comments-section">
+                                    <div class="comments-header">
+                                        <h4 class="section-title">
+                                            <i class="bi bi-chat-dots text-primary"></i>
+                                            Comments
+                                        </h4>
+                                    </div>
+                                    <div class="comment-form-wrapper">
+                                        <textarea id="commentInput" class="form-control custom-textarea"
+                                            placeholder="Share your thoughts about this job..."
+                                            maxlength="500"></textarea>
+                                        <div class="comment-actions">
+                                            <span class="char-count">0/500</span>
+                                            <button class="btn btn-primary comment-btn" id="postComment">
+                                                <i class="bi bi-send"></i> Post Comment
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div id="commentsList" class="comments-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-section-wrapper">
+            <div class="section-layout">
+                <!-- Left Sidebar - Ads -->
+                <div class="left-sidebar-bottom">
+                    <div class="ad-container">
+                        <div class="ad-space-bottom sticky-top mb-4">
+                            <div class="ad-placeholder-bottom">Advertisement Space 1</div>
+                        </div>
+                        <div class="ad-space-bottom sticky-top">
+                            <div class="ad-placeholder-bottom">Advertisement Space 2</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Content Grid -->
+                <div class="main-section">
+                    <div class="jobs-grid-container">
+                        <!-- First Column -->
+                        <div class="grid-column">
+                            <!-- Similar Jobs -->
+                            <div class="related-job-card slide-up-animation">
+                                <div class="related-card-header">
+                                    <h5 class="related-title">
+                                        <i class="bi bi-briefcase text-primary pulse-icon"></i> Similar Jobs
+                                    </h5>
+                                    <span class="related-badge primary" id="similarJobsCount">0</span>
+                                </div>
+                                <div class="related-card-content">
+                                    <div id="similarJobs" class="related-jobs-list"></div>
+                                </div>
+                            </div>
+
+                            <!-- Most Viewed Jobs -->
+                            <div class="related-job-card slide-up-animation">
+                                <div class="related-card-header">
+                                    <h5 class="related-title">
+                                        <i class="bi bi-eye text-success pulse-icon"></i> Most Viewed Jobs
+                                    </h5>
+                                    <span class="related-badge success" id="mostViewedJobsCount">0</span>
+                                </div>
+                                <div class="related-card-content">
+                                    <div id="mostViewedJobs" class="related-jobs-list"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Second Column -->
+                        <div class="grid-column">
+                            <!-- Top Companies -->
+                            <div class="related-job-card slide-up-animation">
+                                <div class="related-card-header">
+                                    <h5 class="related-title">
+                                        <i class="bi bi-building text-purple pulse-icon"></i> Top Companies
+                                    </h5>
+                                    <span class="related-badge purple" id="companyCount">0</span>
+                                </div>
+                                <div class="related-card-content">
+                                    <div id="companyJobs" class="related-jobs-list company-wise-list"></div>
+                                </div>
+                            </div>
+
+                            <!-- Recent Jobs -->
+                            <div class="related-job-card slide-up-animation">
+                                <div class="related-card-header">
+                                    <h5 class="related-title">
+                                        <i class="bi bi-clock-history text-info pulse-icon"></i> Recent Jobs
+                                    </h5>
+                                    <span class="related-badge info" id="recentJobsCount">0</span>
+                                </div>
+                                <div class="related-card-content">
+                                    <div id="recentJobs" class="related-jobs-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="notification-container"></div>
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <script type="module" src="js/components/component-loader.js"></script>
+    <script type="module" src="js/job-details.js"></script>
+    <script src="/js/company-jobs.js"></script>
+    <script type="module" src="js/job-stats.js"></script>
+    <script type="module" src="js/banners.js"></script>
+</body>
+
+</html>

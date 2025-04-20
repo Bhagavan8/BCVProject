@@ -1,0 +1,14 @@
+{
+    "name": "BCVWorld",
+    "short_name": "BCVWorld",
+    "icons": [
+        {
+            "src": "/assets/favicon/favicon.gif",
+            "sizes": "32x32",
+            "type": "image/gif"
+        }
+    ],
+    "theme_color": "#2a2a72",
+    "background_color": "#ffffff",
+    "display": "standalone"
+} 

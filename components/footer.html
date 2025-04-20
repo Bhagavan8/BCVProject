@@ -1,0 +1,244 @@
+<style>
+    .site-footer {
+        padding: 60px 0 20px;
+        font-family: 'Inter', sans-serif;
+        background-color: #f8f9fa;
+        border-top: 1px solid #eaeaea;
+    }
+
+    .site-footer h4 {
+        color: #333;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .site-footer h4::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background: #666;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-links li {
+        margin-bottom: 12px;
+        color: #666;
+        font-size: 15px;
+    }
+
+    .footer-links a {
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .footer-links a:hover {
+        color: #333;
+        transform: translateX(5px);
+    }
+
+    .footer-links i {
+        margin-right: 10px;
+        font-size: 16px;
+        color: #555;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 15px;
+    }
+
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid #eaeaea;
+    }
+
+    .social-links a:hover {
+        background: #eaeaea;
+        color: #333;
+        transform: translateY(-3px);
+    }
+
+    .social-links i {
+        font-size: 18px;
+    }
+
+    .footer-bottom {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eaeaea;
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        .site-footer {
+            padding: 40px 0 20px;
+        }
+        
+        .col-md-4 {
+            margin-bottom: 30px;
+        }
+    }
+    .footer-bottom-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .footer-bottom-links a {
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-size: 14px;
+    }
+
+    .footer-bottom-links a:hover {
+        color: #333;
+    }
+
+    .separator {
+        color: #ddd;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        .footer-bottom-links {
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .separator {
+            display: none;
+        }
+    }
+    .footer-bottom-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 15px;
+    }
+
+    .footer-left {
+        text-align: left;
+        flex: 1;
+    }
+
+    .footer-center {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .footer-logo {
+        height: 30px;
+        width: auto;
+    }
+
+    .footer-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    @media (max-width: 768px) {
+        .footer-bottom-container {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .footer-left, .footer-right {
+            text-align: center;
+            justify-content: center;
+        }
+
+        .footer-right {
+            flex-wrap: wrap;
+        }
+    }
+</style>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="/"><i class="bi bi-house"></i>Home</a></li>
+                    <li><a href="/jobs.html"><i class="bi bi-briefcase"></i>Jobs</a></li>
+                    <li><a href="/about.html"><i class="bi bi-info-circle"></i>About Us</a></li>
+                    <li><a href="/contact.html"><i class="bi bi-envelope"></i>Contact</a></li>
+                    <li><a href="/sitemap.html"><i class="bi bi-diagram-3"></i>Sitemap</a></li>
+                    <li><a href="/privacy.html"><i class="bi bi-shield-check"></i>Privacy Policy</a></li>
+                    <li><a href="/terms.html"><i class="bi bi-file-text"></i>Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Contact Us</h4>
+                <ul class="footer-links">
+                    <li><i class="bi bi-envelope-fill"></i> help.bcv@bcvworld.com</li>
+                    <li><i class="bi bi-geo-alt-fill"></i> Bangalore, Karnataka, India</li>
+                    <li><i class="bi bi-clock-fill"></i> Mon - Fri: 9:00 AM - 6:00 PM</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="https://x.com/bcvworld1811" title="Twitter"><i class="bi bi-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/bcv-world-7a294235a/" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://whatsapp.com/channel/0029VasadwXLikgEikBhWE1o" title="Whatsapp"><i class="bi bi-whatsapp"></i></a>
+                    <a href="https://github.com/bcvworld" title="YouTube"><i class="bi bi-github"></i></a>
+                </div>
+                
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <div class="footer-left">
+                    <span>&copy; 2025 All rights reserved.</span>
+                </div>
+                <div class="footer-center">
+                    <img src="/assets/images/logo.png" alt="BCVWorld" class="footer-logo">
+                    <span>BCVWorld</span>
+                </div>
+                <div class="footer-right">
+                    <a href="/sitemap.html">Sitemap</a>
+                    <span class="separator">|</span>
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <span class="separator">|</span>
+                    <a href="/terms.html">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+

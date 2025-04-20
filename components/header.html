@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* Base styles */
+        :root {
+            --primary-color: #0066cc;
+            --text-dark: #000000;
+            --header-height: 80px;
+        }
+
+        /* Cross-browser compatibility */
+        .header-content {
+            gap: 1rem;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 0.5rem 0;
+            min-height: var(--header-height);
+        }
+
+        /* 3D Text Effects with cross-browser support */
+        .text-3d {
+            color: var(--primary-color);
+            text-shadow:
+                1px 1px 1px rgba(0, 102, 204, 0.2),
+                2px 2px 2px rgba(0, 102, 204, 0.15),
+                3px 3px 3px rgba(0, 102, 204, 0.1);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+        }
+
+        .text-dark-3d {
+            color: var(--text-dark);
+            text-shadow:
+                1px 1px 1px rgba(0, 0, 0, 0.2),
+                2px 2px 2px rgba(0, 0, 0, 0.15),
+                3px 3px 3px rgba(0, 0, 0, 0.1);
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+        }
+
+        /* Animation with cross-browser support */
+        @-webkit-keyframes pulse3D {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes pulse3D {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .logo-link:hover .text-3d,
+        .logo-link:hover .text-dark-3d {
+            -webkit-animation: pulse3D 0.5s ease-in-out;
+            animation: pulse3D 0.5s ease-in-out;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .ad-space-nav {
+            width: clamp(160px, 20vw, 200px);
+            height: clamp(50px, 8vh, 60px);
+            flex-shrink: 0;
+        }
+
+        .ad-placeholder-nav {
+            width: 100%;
+            height: 100%;
+            background: #f8f9fa;
+            border: 1px dashed #dee2e6;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+        }
+
+        .site-tagline {
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+        }
+
+        /* Desktop (Large Screens) */
+        @media screen and (min-width: 1200px) {
+            .header-content {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Desktop (Medium Screens) */
+        @media screen and (max-width: 1199px) {
+            .ad-space-nav {
+                width: 180px;
+            }
+        }
+
+        /* Tablet (Landscape) */
+        @media screen and (max-width: 992px) {
+            .ad-space-nav {
+                width: 160px;
+                height: 50px;
+            }
+            
+            .header-content {
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        /* Tablet (Portrait) */
+        @media screen and (max-width: 768px) {
+            .ad-space-nav {
+                display: none;
+            }
+
+            .header-content {
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                text-align: center;
+                min-height: 60px;
+            }
+        }
+
+        /* Mobile (Landscape) */
+        @media screen and (max-width: 576px) {
+            .text-3d, .text-dark-3d {
+                font-size: 1.5rem;
+            }
+
+            .site-tagline {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Mobile (Portrait) */
+        @media screen and (max-width: 375px) {
+            .header-content {
+                min-height: 50px;
+                padding: 0.25rem;
+            }
+        }
+
+        /* Safari specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .text-3d, .text-dark-3d {
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+            }
+        }
+
+        /* Edge specific fixes */
+        @supports (-ms-ime-align: auto) {
+            .header-content {
+                display: flex;
+            }
+        }
+
+        /* High contrast mode */
+        @media (forced-colors: active) {
+            .text-3d, .text-dark-3d {
+                forced-color-adjust: none;
+            }
+        }
+
+        /* Ensure smooth animations across browsers */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="py-2 border-bottom perspective-container">
+        <div class="container">
+            <div class="header-content">
+                <!-- Left Ad Space -->
+                <div class="ad-space-nav">
+                    <div class="ad-placeholder-nav">Ad</div>
+                </div>
+
+                <!-- Logo Section -->
+                <div class="logo-container-header text-center animate-in">
+                    <h1 class="site-title mb-0 floating">
+                        <a href="/" class="text-decoration-none logo-link">
+                            <span class="text-3d">BCV</span><span class="text-dark-3d">World</span>
+                        </a>
+                    </h1>
+                    <p class="site-tagline text-muted small mb-0">The Future Starts Here</p>
+                </div>
+
+                <!-- Right Ad Space -->
+                <div class="ad-space-nav">
+                    <div class="ad-placeholder-nav">Ad</div>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+</html>

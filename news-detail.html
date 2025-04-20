@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Detail - News Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/social-share.css">
+    <script src="/js/social-share.js" defer></script>
+    <link href="css/news-detail.css" rel="stylesheet">
+    <link href="css/article-navigation.css" rel="stylesheet">
+    <link href="css/sidebar.css" rel="stylesheet">
+    <link href="css/related-articles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <!-- Component Containers -->
+    <div id="header-container"></div>
+    <div id="navigation-container"></div>
+
+
+    <main class="container-fluid py-4 main-content">
+        <div class="row">
+            <!-- Left Sidebar - Ads -->
+            <div class="col-lg-2">
+                <div class="sticky-sidebar">
+                    <div class="ad-space vertical-ad mb-4">
+                        <div class="text-center p-3">Advertisement</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-lg-7">
+                
+                <article id="newsDetail" class="news-article">
+                    <div class="breadcrumb-wrapper">
+                        <div class="container p-0">
+                            <nav aria-label="breadcrumb" class="custom-breadcrumb">
+                                <ol class="breadcrumb align-items-center">
+                                    <li class="breadcrumb-item">
+                                        <a href="index.html" class="home-link">
+                                            <i class="bi bi-house-door-fill"></i>
+                                            <span>Home</span>
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-separator">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </li>
+                                    <li class="breadcrumb-item active news-title text-truncate">
+                                        <span class="truncate-text"></span>
+                                        <span class="ellipsis">...</span>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                   
+                    <div class="article-header mb-4">
+                        <div class="category-badge"></div>
+                        <h1 class="article-title"></h1>
+                        <div class="article-meta">
+                            <span class="author"></span>
+                            <span class="date"></span>
+                            <span class="reading-time"></span>
+                        </div>
+                    </div>
+
+                    <!-- Featured Image -->
+                    <div class="featured-image-container mb-4"></div>
+
+                    <!-- Social Share Buttons -->
+                    <div class="social-share mb-4">
+                        <button class="share-btn facebook"><i class="bi bi-facebook"></i></button>
+                        <button class="share-btn twitter"><i class="bi bi-twitter"></i></button>
+                        <button class="share-btn whatsapp"><i class="bi bi-whatsapp"></i></button>
+                    </div>
+
+                    <!-- Article Content -->
+                    <div class="article-content">
+                        <!-- Content will be loaded dynamically in sections -->
+                    </div>
+
+                    <!-- Mid-Article Ad -->
+                    <div class="ad-space horizontal-ad my-4">
+                        <div class="text-center p-3">Advertisement</div>
+                    </div>
+
+                    <!-- Author Bio -->
+                    <div class="author-bio mt-4">
+                        <div class="author-image"></div>
+                        <div class="author-info">
+                            <h4 class="author-name"></h4>
+                            <p class="author-description"></p>
+                        </div>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="article-tags mt-4"></div>
+                
+                    
+
+
+                    <!-- Comments Section -->
+                    <div class="comments-section mt-4">
+                        <h3>Comments (<span id="commentCount">0</span>)</h3>
+                        <div id="commentsContainer" class="comments-list mb-4"></div>
+                        <div class="comment-form mt-4">
+                            <div id="loginPrompt" class="alert alert-info d-none">
+                                Please <a href="/pages/login.html" id="loginLink">login</a> to post a comment.
+                            </div>
+                            <div id="commentFormContent">
+                                <textarea id="commentText" class="form-control" placeholder="Write your comment..."
+                                    rows="3"></textarea>
+                                <div class="d-flex justify-content-between align-items-center mt-2">
+                                    <small class="text-muted">Maximum 500 characters</small>
+                                    <button id="postComment" class="btn btn-primary">Post Comment</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <nav class="article-navigation">
+                    <div class="nav-links">
+                        <a id="prevArticle" class="nav-item prev" href="#" tabindex="0">
+                            <div class="nav-content">
+                                <span class="nav-label">Previous Article</span>
+                                <h4 class="nav-title"></h4>
+                                <span class="nav-meta">
+                                    <i class="bi bi-arrow-left"></i>
+                                    <span class="nav-category"></span>
+                                </span>
+                            </div>
+                        </a>
+                        <div class="nav-separator"></div>
+                        <a id="nextArticle" class="nav-item next" href="#" tabindex="0">
+                            <div class="nav-content">
+                                <span class="nav-label">Next Article</span>
+                                <h4 class="nav-title"></h4>
+                                <span class="nav-meta">
+                                    <span class="nav-category"></span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </nav>
+                <section class="read-more-section">
+                    <div class="container p-0">
+                        <h3 class="section-title">Related Articles</h3>
+                        <div class="related-articles" id="relatedArticlesContainer">
+                            <!-- Articles will be populated dynamically -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+           
+
+            <!-- Right Sidebar -->
+            <div class="col-lg-3">
+                <div class="sticky-sidebar">
+                    <!-- Latest News -->
+                    <div class="sidebar-section mb-4">
+                        <h4>Latest News</h4>
+                        <div id="latestNewsContainer" class="text-truncate-container"></div>
+                    </div>
+
+                    <!-- Category News -->
+                    <div class="sidebar-section mb-4">
+                        <h4>Category News</h4>
+                        <div id="categoryNewsContainer" class="text-truncate-container"></div>
+                    </div>
+
+                    <!-- Popular News -->
+                    <div class="sidebar-section mb-4">
+                        <h4>Most Read</h4>
+                        <div id="popularNewsContainer" class="text-truncate-container"></div>
+                    </div>
+
+                    <!-- Advertisement -->
+                    <div class="ad-space sidebar-ad mb-4">
+                        <div class="text-center p-3">Advertisement</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="reading-progress"></div>
+  
+
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/components/component-loader.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/news-detail.js"></script>
+    <script type="module" src="js/sidebar-content.js"></script>
+    <script type="module" src="js/article-navigation.js"></script>
+    <script type="module" src="js/related-articles.js"></script>
+</body>
+
+</html>

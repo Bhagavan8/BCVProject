@@ -1,0 +1,252 @@
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Auth Forms */
+.auth-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* User Dropdown Styles */
+#userDropdown {
+    cursor: pointer;
+}
+
+#userDropdown .dropdown-toggle {
+    color: #333;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+#userDropdown .dropdown-toggle:hover {
+    background-color: #f8f9fa;
+}
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.jobs-section {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.jobs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.job-item {
+    width: 100%;
+}
+
+.job-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 20px;
+}
+
+.job-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card-header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.card-header-content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.logo-container {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.company-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.icon-large {
+    font-size: 2.5rem;
+}
+
+.header-info {
+    flex: 1;
+}
+
+.company-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #2d3748;
+}
+
+.job-title {
+    font-size: 1.1rem;
+    color: #4a5568;
+    margin-bottom: 8px;
+}
+
+.job-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.bank-badge { background: #ebf8ff; color: #3182ce; }
+.government-badge { background: #fff5f5; color: #e53e3e; }
+.private-badge { background: #f0fff4; color: #38a169; }
+
+.job-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.details-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4a5568;
+}
+
+.details-item i {
+    color: #718096;
+}
+
+.skills-container {
+    margin-top: 16px;
+}
+
+.skills-title {
+    font-size: 0.875rem;
+    color: #4a5568;
+    margin-bottom: 12px;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-tag {
+    padding: 4px 12px;
+    background: #edf2f7;
+    border-radius: 16px;
+    font-size: 0.875rem;
+    color: #4a5568;
+}
+
+.skill-tag.more {
+    color: #4299e1;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 16px;
+}
+
+.footer-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.875rem;
+}
+
+.post-date, .deadline {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.post-date { color: #718096; }
+.deadline { color: #e53e3e; }
+
+.metrics {
+    display: flex;
+    gap: 12px;
+}
+
+.metric-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #718096;
+}
+
+.apply-button {
+    padding: 8px 20px;
+    background: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.apply-button:hover {
+    background: #3182ce;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.rating-value {
+    font-weight: 500;
+    color: #2d3748;
+}
+
+.reviews {
+    color: #718096;
+    font-size: 0.875rem;
+}

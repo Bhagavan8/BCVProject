@@ -1,0 +1,81 @@
+/* Contact Header */
+.contact-header {
+    background: #f8f9fa;
+}
+
+/* Contact Form */
+.contact-form-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.contact-form .form-control {
+    padding: 12px;
+    border-radius: 6px;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Contact Information */
+.contact-info {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.contact-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.contact-item i {
+    font-size: 24px;
+    color: #0d6efd;
+}
+
+.contact-item h5 {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.contact-item p {
+    margin-bottom: 0;
+    color: #666;
+}
+
+/* Social Links */
+.social-links {
+    margin-top: 30px;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: #0d6efd;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .contact-info {
+        margin-top: 30px;
+    }
+}

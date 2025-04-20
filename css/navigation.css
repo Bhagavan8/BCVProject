@@ -1,0 +1,21 @@
+/* Navigation Styles */
+.main-nav {
+    background: #fff;
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+}
+
+.nav-items-header {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: color 0.3s;
+}

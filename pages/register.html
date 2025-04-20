@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - BCV World</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .main-container {
+            height: 100vh;
+            margin: 0;
+            max-width: 100%;
+            border-radius: 0;
+        }
+        .logo {
+            position: relative;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            position: relative;
+            background: linear-gradient(135deg, #2D3436 0%, #000000 100%);
+        }
+        .content-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+        }
+        .form-container {
+            height: 100vh;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .glass-card {
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .form-control, .form-select {
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e1e5ea;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #009ffd;
+            box-shadow: 0 0 0 0.25rem rgba(0, 159, 253, 0.25);
+        }
+        .btn-custom {
+            background: linear-gradient(135deg, #2a2a72 0%, #009ffd 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 0.8rem 2rem;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 159, 253, 0.4);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        .floating-shapes div {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: float 8s infinite;
+        }
+        .floating-shapes div:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        .floating-shapes div:nth-child(2) {
+            top: 50%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        .floating-shapes div:nth-child(3) {
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid p-0">
+        <div class="main-container">
+            <div class="row g-0 h-100">
+                <!-- Left Content Section -->
+                <!-- In the HTML section -->
+                <div class="col-lg-5 content-section text-white">
+                    <div class="logo">
+                        <img src="/images/logo.png" alt="BCV World Logo">
+                    </div>
+                    <div class="floating-shapes">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-4">Join BCV World</h1>
+                    <p class="lead mb-5">The Future Starts Here</p>
+
+                    <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="bi bi-rocket-takeoff"></i>
+                        </div>
+                        <h4>Launch Your Career</h4>
+                        <p>Connect with top employers and discover opportunities that match your aspirations.</p>
+                    </div>
+
+                    <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <h4>Grow Your Skills</h4>
+                        <p>Access premium learning resources and stay ahead in your industry.</p>
+                    </div>
+                </div>
+
+                <!-- Right Registration Section -->
+                <div class="col-lg-7 form-container">
+                    <h2 class="mb-4">Create Your Account</h2>
+                    <form id="registerForm" class="needs-validation" novalidate>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="signupEmail" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Phone Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">+91</span>
+                                    <input type="tel" class="form-control" id="phone" pattern="[6-9][0-9]{9}" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" id="dob" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" id="signupPassword" 
+                                       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
+                                <div class="form-text">Password must be at least 8 characters long with uppercase, lowercase, number and special character</div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-custom w-100 mt-4">
+                                    Create Account <i class="bi bi-arrow-right ms-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="text-center mt-4">
+                        <p class="mb-0">Already have an account? <a href="/pages/login.html" class="text-primary">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="module" src="/js/firebase-config.js"></script>
+    <script type="module" src="/js/components/auth.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (!this.checkValidity()) {
+                e.stopPropagation();
+                Toastify({
+                    text: "Please fill all required fields correctly",
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    style: { background: "linear-gradient(to right, #ff416c, #ff4b2b)" }
+                }).showToast();
+            }
+            this.classList.add('was-validated');
+        });
+    </script>
+</body>
+</html>

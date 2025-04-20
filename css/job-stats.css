@@ -1,0 +1,149 @@
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6c757d;
+}
+
+.stat-item i {
+    font-size: 18px;
+}
+
+.like-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6c757d;
+    transition: all 0.2s ease;
+}
+
+.like-btn:hover {
+    color: #dc3545;
+}
+
+.like-btn.liked {
+    color: #dc3545;
+}
+
+.like-btn i {
+    font-size: 18px;
+    transition: transform 0.2s ease;
+}
+
+.like-btn:hover i {
+    transform: scale(1.1);
+}
+.comment-item {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.comment-item:last-child {
+    border-bottom: none;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.comment-author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.comment-date {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.comment-content {
+    color: #2c3e50;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.comment-form {
+    margin-bottom: 1.5rem;
+}
+
+.comment-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.char-count {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.no-comments {
+    text-align: center;
+    padding: 2rem;
+    color: #6c757d;
+}
+
+.no-comments i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.pagination-container {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.pagination .page-link {
+    color: #0d6efd;
+    border: 1px solid #dee2e6;
+    padding: 0.5rem 0.75rem;
+    margin: 0 2px;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: white;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+
+.pagination .page-link:hover {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    color: #0a58ca;
+}
+
+.save-job {
+    transition: all 0.3s ease;
+}
+
+.save-job.saved {
+    color: #0d6efd;
+}
+
+.save-job.saved i {
+    animation: savePopIn 0.3s ease;
+}
+
+@keyframes savePopIn {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}

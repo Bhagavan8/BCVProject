@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="/css/top-bar.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<div class="top-bar">
+    <div class="container">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <div class="unified-selector dropdown">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="../assets/images/news/indian-flag.png" alt="India" width="20" height="14">
+                        <span>IN - ENGLISH</span>
+                    </div>
+                </div>
+                <div class="datetime">
+                    <span id="currentDateTime"></span>
+                </div>
+            </div>
+
+            <div class="top-bar-right d-flex align-items-center gap-3">
+                <div id="authSection" class="d-flex align-items-center">
+                    <!-- Auth Button (shown when logged out) -->
+                    <div class="auth-buttons">
+                        <a href="/pages/login.html" class="btn btn-outline-primary btn-sm auth-btn">
+                            <i class="bi bi-person-circle"></i>
+                            <span>Sign In</span>
+                        </a>
+                    </div>
+
+                    <!-- User Dropdown (hidden by default) -->
+                    <div id="userDropdown" class="dropdown" style="display: none;">
+                        <a href="#" class="user-profile-link d-flex align-items-center gap-2 text-decoration-none dropdown-toggle px-2 py-1" 
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="avatar-wrapper">
+                                <img id="userAvatar" src="/assets/images/default-avatar.png" alt="User" 
+                                     class="rounded-circle border" width="38" height="38">
+                            </div>
+                            <div class="user-info">
+                                <span id="userName" class="fw-medium text-dark">User</span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2">
+                            <li>
+                                <a class="dropdown-item py-2 px-3" href="/pages/profile.html">
+                                    <i class="bi bi-person-circle me-2 text-primary"></i>My Profile
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item py-2 px-3 text-danger" href="#" onclick="handleSignOut(); return false;">
+                                    <i class="bi bi-box-arrow-right me-2"></i>Sign Out
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="social-icons d-flex align-items-center gap-2">
+                    <a href="https://github.com/bcvworld" class="btn btn-link p-0" title="Github" target="_blank"><i class="bi bi-github"></i></a>
+                    <a href="https://x.com/bcvworld1811" class="btn btn-link p-0" title="Twitter"  target="_blank"><i class="bi bi-twitter"></i></a>
+                    <a href="https://whatsapp.com/channel/0029VasadwXLikgEikBhWE1o" class="btn btn-link p-0" title="Whatsapp"  target="_blank"><i class="bi bi-whatsapp"></i></a>
+                    <a href="https://www.linkedin.com/in/bcv-world-7a294235a/" class="btn btn-link p-0" title="LinkedIn"  target="_blank"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="/js/firebase-config.js"></script>
+<script type="module" src="/js/components/auth.js"></script>
+<script src="/js/components/top-bar.js"></script>
+</html>
