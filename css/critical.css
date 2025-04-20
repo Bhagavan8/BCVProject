@@ -1,0 +1,83 @@
+/* Critical styles that should load first */
+.main-breaking-news {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.main-breaking-news img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    will-change: transform;
+    content-visibility: auto;
+}
+
+.news-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+}
+
+.news-categories-section {
+    min-height: 400px; /* Adjust based on your content */
+    width: 100%;
+    position: relative;
+}
+.container-fluid {
+    contain: layout;
+    min-height: 100vh;
+}
+.news-card img {
+    aspect-ratio: 16/9;
+    width: 100%;
+    height: auto;
+}
+
+
+/* Breaking News Image Styles */
+/* Optimize main breaking news images */
+.main-breaking-news .image-wrapper img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    will-change: transform;
+    content-visibility: auto;
+    contain: layout paint;
+}
+
+.secondary-breaking-news img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    will-change: transform;
+    content-visibility: auto;
+    contain: layout paint;
+}
+
+/* Optimize article images */
+.article-image img {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
+    will-change: transform;
+    content-visibility: auto;
+    contain: layout paint;
+}
+
+/* Add loading optimization */
+.image-wrapper,
+.article-image {
+    position: relative;
+    overflow: hidden;
+    background-color: #f0f0f0; /* Placeholder color */
+    contain: layout style paint;
+}

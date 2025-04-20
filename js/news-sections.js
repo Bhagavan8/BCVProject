@@ -51,8 +51,8 @@ function createMainNewsHTML(news) {
                     <i class="bi bi-whatsapp"></i>
                 </a>
             </div>
-            <div class="image-wrapper overflow-hidden">
-                <img src="${news.imagePath}" alt="${news.title}" class="w-100">
+            <div class="image-wrapper">
+                <img src="${news.imagePath}" alt="${news.title}">
             </div>
             <div class="news-overlay">
                 <span class="news-category">${news.category}</span>
