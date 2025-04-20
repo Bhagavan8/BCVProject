@@ -147,3 +147,15 @@
     50% { transform: scale(1.2); }
     100% { transform: scale(1); }
 }
+.job-code-referal{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 4px 8px;
+    background-color: rgba(13, 202, 240, 0.1);
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+.referal-code i {
+    color: #0dcaf0;
+}

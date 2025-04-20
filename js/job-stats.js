@@ -527,7 +527,36 @@ class JobStatsManager {
             }
         }
     
-    
+        
+}
+async function displayJobDetails(jobId, jobType) {
+    try {
+        const jobRef = doc(db, jobType === 'private' ? 'jobs' : 
+                             jobType === 'government' ? 'governmentJobs' : 'bankJobs', jobId);
+        const jobDoc = await getDoc(jobRef);
+        
+        if (jobDoc.exists()) {
+            const jobData = jobDoc.data();
+            
+            // ... existing code for displaying other job details ...
+
+            // Handle job code display for private jobs
+            const jobCodeWrapper = document.getElementById('jobCodeWrapper');
+            const jobCodeElement = document.getElementById('jobCode');
+            
+            if (jobType === 'private' && jobData.referralCode) {
+                jobCodeElement.textContent = jobData.referralCode;
+                jobCodeWrapper.style.display = 'flex';
+            } else {
+                jobCodeWrapper.style.display = 'none';
+            }
+
+            // ... rest of your existing code ...
+        }
+    } catch (error) {
+        console.error('Error fetching job details:', error);
+        showErrorToast('Failed to load job details');
+    }
 }
 
 

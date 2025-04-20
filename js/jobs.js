@@ -130,6 +130,13 @@ function createJobCard(job, type) {
                     </span>
                 ` : ''}
             </div>
+            ${type === 'private' && job.referralCode ? `
+                <div class="referral-code mb-2">
+                    <span class="badge bg-info">
+                        <i class="bi bi-ticket-perforated"></i> Referral Code: ${job.referralCode}
+                    </span>
+                </div>
+            ` : ''}
             <div class="action-buttons">
                 <a href="${job.applicationLink}" target="_blank" download class="btn btn-primary btn-sm">
                     Apply Now

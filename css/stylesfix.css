@@ -49,3 +49,128 @@ img {
     height: auto;
     aspect-ratio: attr(width) / attr(height);
 }
+.image-aspect-ratio {
+    aspect-ratio: 16/9;
+    width: 100%;
+    background: #f0f0f0;
+}
+
+.news-overlay {
+    position: relative;
+    min-height: 300px;
+}
+
+.ad-space {
+    min-height: 600px;
+    background: #f5f5f5;
+}
+
+.news-section-grid {
+    min-height: 400px;
+}
+
+.main-breaking-news {
+    min-height: 400px;
+    background: #f5f5f5;
+}
+
+.secondary-breaking-news {
+    min-height: 200px;
+    background: #f5f5f5;
+}
+
+/* Optimize main breaking news images */
+.main-breaking-news {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    background-color: #f0f0f0;
+    contain: layout style paint;
+}
+
+.main-breaking-news img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+    content-visibility: auto;
+    contain: layout paint;
+}
+
+/* Add responsive image sizes */
+@media (max-width: 768px) {
+    .main-breaking-news img {
+        max-width: 100vw;
+        max-height: 300px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+    .main-breaking-news img {
+        max-width: 800px;
+        max-height: 400px;
+    }
+}
+
+@media (min-width: 1201px) {
+    .main-breaking-news img {
+        max-width: 1200px;
+        max-height: 500px;
+    }
+}
+
+/* Secondary news images */
+.secondary-breaking-news {
+    aspect-ratio: 16/9;
+    background-color: #f0f0f0;
+    contain: layout style paint;
+}
+
+.secondary-breaking-news img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: 250px;
+    will-change: transform;
+    content-visibility: auto;
+}
+
+/* News card images */
+.news-card {
+    contain: layout style;
+}
+
+.news-card img {
+    aspect-ratio: 16/9;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    object-fit: cover;
+    background-color: #f0f0f0;
+}
+
+/* Avatar and small images */
+.user-avatar,
+.flag-icon {
+    width: auto;
+    height: auto;
+    max-width: 40px;
+    max-height: 40px;
+    object-fit: contain;
+}
+
+.flag-icon {
+    max-width: 20px;
+    max-height: 14px;
+}
+
+/* Image loading optimization */
+.image-wrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    contain: layout style paint;
+}
+
+/* Rest of your existing styles... */

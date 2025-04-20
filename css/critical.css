@@ -1,4 +1,4 @@
-/* Critical styles that should load first */
+
 .main-breaking-news {
     position: relative;
     border-radius: 8px;
@@ -81,3 +81,5 @@
     background-color: #f0f0f0; /* Placeholder color */
     contain: layout style paint;
 }
+
+
