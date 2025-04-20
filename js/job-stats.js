@@ -530,28 +530,24 @@ class JobStatsManager {
         
 }
 async function displayJobDetails(jobId, jobType) {
+    if (jobType !== 'private') return; // Only proceed for private jobs
+    
     try {
-        const jobRef = doc(db, jobType === 'private' ? 'jobs' : 
-                             jobType === 'government' ? 'governmentJobs' : 'bankJobs', jobId);
+        const jobRef = doc(db, 'jobs', jobId);
         const jobDoc = await getDoc(jobRef);
         
         if (jobDoc.exists()) {
             const jobData = jobDoc.data();
             
-            // ... existing code for displaying other job details ...
-
-            // Handle job code display for private jobs
             const jobCodeWrapper = document.getElementById('jobCodeWrapper');
             const jobCodeElement = document.getElementById('jobCode');
             
-            if (jobType === 'private' && jobData.referralCode) {
+            if (jobData.referralCode) {
                 jobCodeElement.textContent = jobData.referralCode;
                 jobCodeWrapper.style.display = 'flex';
             } else {
                 jobCodeWrapper.style.display = 'none';
             }
-
-            // ... rest of your existing code ...
         }
     } catch (error) {
         console.error('Error fetching job details:', error);
@@ -559,8 +555,7 @@ async function displayJobDetails(jobId, jobType) {
     }
 }
 
-
-// Initialize when DOM is loaded
+// Update the initialization code
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const jobId = urlParams.get('id');
@@ -568,6 +563,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (jobId && jobType) {
         new JobStatsManager(jobId, jobType);
+        displayJobDetails(jobId, jobType); 
     }
 });
 
