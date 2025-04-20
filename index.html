@@ -223,6 +223,24 @@
         import { getAuth } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
         import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
     </script>
+    <script type="module">
+        // Add this to your news-sections.js
+        function createImageElement(src, alt) {
+            return `
+                <picture class="image-aspect-ratio">
+                    <source srcset="${src.replace('.jpg', '.webp')}" type="image/webp">
+                    <source srcset="${src.replace('.jpg', '.avif')}" type="image/avif">
+                    <img src="${src}" 
+                         alt="${alt}" 
+                         loading="lazy" 
+                         decoding="async" 
+                         width="800" 
+                         height="450" 
+                         style="object-fit: cover; width: 100%; height: 100%;">
+                </picture>
+            `;
+        }
+    </script>
 
     <!-- Non-critical third party scripts -->
     <script defer src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

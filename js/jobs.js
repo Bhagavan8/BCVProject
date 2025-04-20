@@ -110,7 +110,7 @@ function createJobCard(job, type) {
             ${type === 'private' && job.skills ? `
                 <div class="skills-info mb-2">
                     <div class="skills-list">
-                        ${job.skills.slice(0, 7).map(skill => `
+                        ${job.skills.slice(0, 9).map(skill => `
                             <span class="badge bg-light text-dark me-1">${skill}</span>
                         `).join('')}
                     </div>
