@@ -85,14 +85,9 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Add after existing headers
 <IfModule mod_headers.c>
-    # Add preload headers for critical resources
-    <FilesMatch "\.js$">
-        Header add Link "</path/to/critical.js>; rel=preload; as=script"
-    </FilesMatch>
-    
+   
     # Enable HTTP/2 Server Push for critical resources
     <FilesMatch "index.html">
         Header add Link "</css/critical.css>; rel=preload; as=style"
-        Header add Link "</js/critical.js>; rel=preload; as=script"
     </FilesMatch>
 </IfModule>
