@@ -11,19 +11,31 @@ async function getJobs(jobType) {
         switch(jobType) {
             case 'private':
                 jobsRef = collection(db, 'jobs');
-                q = query(jobsRef, where('isActive', '==', true));
+                q = query(jobsRef, 
+                    where('isActive', '==', true),
+                    orderBy('createdAt', 'desc')  // Add sorting
+                );
                 break;
             case 'government':
                 jobsRef = collection(db, 'governmentJobs');
-                q = query(jobsRef, where('isActive', '==', true));
+                q = query(jobsRef, 
+                    where('isActive', '==', true),
+                    orderBy('createdAt', 'desc')  // Add sorting
+                );
                 break;
             case 'bank':
                 jobsRef = collection(db, 'bankJobs');
-                q = query(jobsRef, where('isActive', '==', true));
+                q = query(jobsRef, 
+                    where('isActive', '==', true),
+                    orderBy('createdAt', 'desc')  // Add sorting
+                );
                 break;
             default:
                 jobsRef = collection(db, 'jobs');
-                q = query(jobsRef, where('isActive', '==', true));
+                q = query(jobsRef, 
+                    where('isActive', '==', true),
+                    orderBy('createdAt', 'desc')  // Add sorting
+                );
         }
 
         const snapshot = await getDocs(q);
@@ -40,7 +52,6 @@ async function getJobs(jobType) {
         return [];
     }
 }
-
 
 
 function createJobCard(job, type) {
@@ -85,7 +96,10 @@ function createJobCard(job, type) {
                 </div>
                 <div class="details-item">
                     <i class="bi bi-mortarboard"></i>
-                    <span>${getValue(job.educationLevel)?.charAt(0).toUpperCase() + getValue(job.educationLevel)?.slice(1) || 'Not specified'}</span>
+                    <span title="${getValue(job.educationLevel)?.length > 25 ? getValue(job.educationLevel) : ''}">${
+                        (getValue(job.educationLevel)?.charAt(0).toUpperCase() + getValue(job.educationLevel)?.slice(1) || 'Not specified')
+                        .slice(0, 25) + (getValue(job.educationLevel)?.length > 25 ? '...' : '')
+                    }</span>
                 </div>
             ` : `
                 <div class="details-item">
