@@ -3,15 +3,56 @@
     width: 100%;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
     overflow: hidden;
+    contain: layout size;
+    min-height: 200px;
 }
 
-.image-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Add explicit dimensions for news sections */
+.news-categories-section {
+    contain: layout style;
+    min-height: 400px;
     width: 100%;
-    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+/* Optimize main container */
+.container-fluid {
+    contain: layout style;
+    min-height: 600px;
+}
+
+/* Image optimizations */
+img {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    display: block;
+    width: 100%;
+}
+
+/* News item containers */
+.news-item {
+    contain: layout size;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Breaking news section */
+.breaking-news-container {
+    min-height: 300px;
+    contain: layout size;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+/* Media elements */
+.media-element {
+    width: 100%;
+    aspect-ratio: 16/9;
     object-fit: cover;
+    display: block;
 }
 
 /* Pre-reserve space for ads */
@@ -82,11 +123,11 @@ img {
 /* Optimize main breaking news images */
 .main-breaking-news {
     position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
     border-radius: 8px;
     overflow: hidden;
-    aspect-ratio: 16/9;
-    background-color: #f0f0f0;
-    contain: layout style paint;
+    background: #f8f9fa;
 }
 
 .main-breaking-news img {
@@ -96,6 +137,11 @@ img {
     will-change: transform;
     content-visibility: auto;
     contain: layout paint;
+}
+.breaking-news-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #f8f9fa;
 }
 
 /* Add responsive image sizes */
@@ -125,6 +171,26 @@ img {
     aspect-ratio: 16/9;
     background-color: #f0f0f0;
     contain: layout style paint;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .main-breaking-news {
+        margin: 0 -15px;
+        border-radius: 0;
+    }
+
+    .breaking-news-placeholder {
+        aspect-ratio: 4/3;
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .breaking-news-placeholder {
+        aspect-ratio: 1/1;
+        min-height: 200px;
+    }
 }
 
 .secondary-breaking-news img {
@@ -172,5 +238,3 @@ img {
     background-color: #f0f0f0;
     contain: layout style paint;
 }
-
-/* Rest of your existing styles... */
