@@ -773,11 +773,12 @@ async function loadCompanyWiseJobs() {
             companyCount.textContent = Object.keys(companies).length;
         }
 
-        // Display companies
+        // Display companies - modified to show only top 5 companies by job count
         const companyJobsContainer = document.getElementById('companyJobs');
         if (companyJobsContainer) {
             companyJobsContainer.innerHTML = Object.entries(companies)
-                .sort(([a], [b]) => a.localeCompare(b))
+                .sort(([, a], [, b]) => b.jobs.length - a.jobs.length) // Sort by number of jobs
+                .slice(0, 5) // Take only top 5
                 .map(([companyName, data]) => `
                     <div class="list-group-item company-item py-3" onclick="showCompanyRoles('${companyName}')">
                         <div class="d-flex align-items-center">
