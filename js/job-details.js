@@ -35,6 +35,12 @@ class JobDetailsManager {
     }
     async loadJobDetails() {
         try {
+            if (!this.jobId || !this.jobType) {
+                console.log('Missing job ID or type');
+                window.location.href = '/jobs.html';
+                return;
+            }
+
             const jobRef = doc(db, this.getCollectionName(), this.jobId);
             const jobDoc = await getDoc(jobRef);
 
@@ -741,12 +747,12 @@ class JobDetailsManager {
     renderMostViewedSection(containerId, snapshot) {
         const container = document.getElementById(containerId);
         if (!container) return;
-    
+
         if (snapshot.empty) {
             container.innerHTML = this.getEmptyStateHtml();
             return;
         }
-    
+
         const jobsHtml = snapshot.docs.map((doc, index) => {
             const job = doc.data();
             return `
@@ -773,19 +779,19 @@ class JobDetailsManager {
                     </div>
                 </a>`;
         }).join('');
-    
+
         container.innerHTML = jobsHtml;
     }
 
     renderRecentJobsSection(containerId, snapshot) {
         const container = document.getElementById(containerId);
         if (!container) return;
-    
+
         if (snapshot.empty) {
             container.innerHTML = this.getEmptyStateHtml();
             return;
         }
-    
+
         const jobsHtml = snapshot.docs.map(doc => {
             const job = doc.data();
             let timeAgo = 'Recently';
@@ -793,7 +799,7 @@ class JobDetailsManager {
                 const timestamp = job.createdAt.seconds ? job.createdAt : new Date(job.createdAt);
                 timeAgo = this.getTimeAgo(timestamp);
             }
-            
+
             return `
                 <a href="job-details.html?id=${doc.id}&type=${this.jobType}" class="job-card list-group-item list-group-item-action py-2 fade-in">
                     <div class="job-content">
@@ -810,7 +816,7 @@ class JobDetailsManager {
                     </div>
                 </a>`;
         }).join('');
-    
+
         container.innerHTML = jobsHtml;
     }
     async renderCompanyWiseJobs() {
@@ -822,12 +828,12 @@ class JobDetailsManager {
                 orderBy('companyName')
             );
             const snapshot = await getDocs(q);
-    
+
             const companies = {};
             snapshot.docs.forEach(doc => {
                 const job = doc.data();
                 const companyName = job.companyName || 'Unknown Company';
-                
+
                 if (!companies[companyName]) {
                     companies[companyName] = {
                         jobs: [],
@@ -841,19 +847,19 @@ class JobDetailsManager {
                 });
                 companies[companyName].count++;
             });
-    
-            const topCompanies = Object.entries(companies)
-            .sort(([, a], [, b]) => b.count - a.count)
-            .slice(0, 3);
 
-        // Update company count
-        const companyCountElement = document.getElementById('companyCount');
-        if (companyCountElement) {
-            companyCountElement.textContent = topCompanies.length.toString();
-        }
-    
+            const topCompanies = Object.entries(companies)
+                .sort(([, a], [, b]) => b.count - a.count)
+                .slice(0, 3);
+
+            // Update company count
+            const companyCountElement = document.getElementById('companyCount');
+            if (companyCountElement) {
+                companyCountElement.textContent = topCompanies.length.toString();
+            }
+
             const companyJobsContainer = document.getElementById('companyJobs');
-            
+
             if (companyJobsContainer) {
                 companyJobsContainer.innerHTML = topCompanies.map(([companyName, data]) => `
                     <div class="company-card">
@@ -919,7 +925,7 @@ class JobDetailsManager {
                 hour: 3600,
                 minute: 60
             };
-    
+
             for (const [unit, secondsInUnit] of Object.entries(intervals)) {
                 const interval = Math.floor(seconds / secondsInUnit);
                 if (interval >= 1) {
@@ -1045,7 +1051,7 @@ class JobDetailsManager {
                         </div>`;
                 }
             });
-    
+
             // Fetch jobs with different criteria
             const [similarJobs, mostViewedJobs, recentJobs] = await Promise.all([
                 getDocs(query(
@@ -1066,33 +1072,37 @@ class JobDetailsManager {
                     limit(3)
                 ))
             ]);
-    
+
             // Update section counts
             document.getElementById('similarJobsCount').textContent = similarJobs.size;
             document.getElementById('mostViewedJobsCount').textContent = mostViewedJobs.size;
             document.getElementById('recentJobsCount').textContent = recentJobs.size;
-    
+
             // Render each section
             this.renderSidebarSection('similarJobs', similarJobs);
             this.renderMostViewedSection('mostViewedJobs', mostViewedJobs);
             this.renderRecentJobsSection('recentJobs', recentJobs);
             await this.renderCompanyWiseJobs();
-    
+
         } catch (error) {
             console.error('Error loading sidebar jobs:', error);
             this.handleSidebarError();
         }
     }
 }
-    
+
 
 // Call this function when loading job details
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const jobId = urlParams.get('id');
-    if (jobId) {
-
-        new JobDetailsManager(); // Add 'new' keyword here
+    if (!jobId) {
+        console.log('Missing job ID or type');
+        window.location.href = '/jobs.html';
+        return;
+    } else {
+        (jobId)
+        new JobDetailsManager();
     }
 });
 
